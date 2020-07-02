@@ -13,8 +13,8 @@
         </md-card-content>
       </md-card-header>
       <md-card-actions>
-        <md-button @click="buy(item._id)" id="buy">Comprado</md-button>
-        <md-button @click="del(item._id)" id="delete">Borrar</md-button>
+        <md-button @click="duplicate(item)" id="buy">Duplicar</md-button>
+        <md-button @click="del(item._id)" id="delete">Comprado</md-button>
       </md-card-actions>
     </md-card>
   </div>
@@ -34,15 +34,24 @@ export default {
       'CREATE_NEW_ITEM'
     ]),
     ...mapActions([
-      'deleteItem'
+      'deleteItem',
+      'addItem'
     ]),
     del(itemId){
       this.deleteItem(itemId).then(()=>{
-        this.$socket.emit('eventDelete', itemId);
+        console.log('Calling to event deleted');
+        this.$socket.emit('eventDeleted', itemId);
     });
     },
-    buy(id){
-      this.$events.$emit('test', id);
+    duplicate(item){
+      let payload = {
+          codproduct: item.codproduct,
+          amount: item.amount,
+          priority: item.priority
+      }
+      this.addItem(payload).then(()=>{
+        this.$socket.emit('eventDuplicated', payload.codproduct);
+      });
     }
   }
 }

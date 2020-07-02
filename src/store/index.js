@@ -14,7 +14,7 @@ axiosRetry(axios, { retryDelay: axiosRetry.exponentialDelay});
 export default new Vuex.Store({
   state: {
     fullScreenMode: false,
-    host: 'http://181.99.124.31:3003',
+    host: 'http://localhost:3003',
     loading: 'NotLoading',
     searching: false,
     results: [],
@@ -86,7 +86,7 @@ export default new Vuex.Store({
     },
     deleteItem(context, id) {
       return axios.delete(`${context.state.host}/items/delete-item/${id}`)
-    }
+    },
   },
   getters: {
     allProducts: (state) =>  {

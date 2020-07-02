@@ -30,10 +30,14 @@ export default {
   },
   sockets: {
         connect: function () {
-            console.log('socket connected')
+            console.log('Socket connected')
         },
         Deleted: function (data) {
             console.log('Elemento eliminado por algun usuario, id del producto: ', data);
+            this.fetchItems();
+        },
+        Duplicated: function (data) {
+            console.log('Elemento duplicado por algun usuario, id del producto: ', data);
             this.fetchItems();
         },
         Add: function (data) {
