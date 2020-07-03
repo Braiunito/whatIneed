@@ -10,7 +10,7 @@ axiosRetry(axios, { retries: 3 });
 
 // Exponential back-off retry delay between requests
 axiosRetry(axios, { retryDelay: axiosRetry.exponentialDelay});
- 
+
 export default new Vuex.Store({
   state: {
     fullScreenMode: false,
@@ -44,7 +44,7 @@ export default new Vuex.Store({
       }
       else {
         state.items = status
-      } 
+      }
     },
     POPULATE_PRODUCTS(state, status){
       state.products = status

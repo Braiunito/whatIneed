@@ -37,7 +37,7 @@ import {mapActions} from 'vuex';
             }
             this.addProduct(payload).then(()=>{
               document.getElementById('addButton').style = 'background-color: green';
-              this.$socket.emit('eventAdd', payload);
+              this.$socket.client.emit('eventAdd', payload);
               setTimeout(() => {
                 document.getElementById('addButton').style = 'background-color: #448aff';
               }, 800);

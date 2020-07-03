@@ -30,7 +30,15 @@ export default {
   },
   sockets: {
         connect: function () {
-            console.log('Socket connected')
+            console.log('socket connected')
+        },
+        disconnect: function (){ 
+        console.log('Trying to reconnect!');
+          try { this.$socket.client.connect() } 
+          catch (err) { console.log('Error in sokcet connection: '+err) }
+        },
+        customEmit: function (data) {
+            console.log('this method was fired by the socket server. eg: io.emit("customEmit"'+ data)
         },
         Deleted: function (data) {
             console.log('Elemento eliminado por algun usuario, id del producto: ', data);
@@ -44,7 +52,11 @@ export default {
             console.log('Elemento agregado por algun usuario, item agregado: ', data);
             this.fetchItems();
         },
-  },
+        Random: function (data) {
+            console.log('Saludo revicivido, el saludo es: ', data);
+            this.fetchItems();
+        }
+    },
   computed: mapState([
     'fullScreenMode',
     'searching',

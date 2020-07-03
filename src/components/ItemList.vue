@@ -40,7 +40,8 @@ export default {
     del(itemId){
       this.deleteItem(itemId).then(()=>{
         console.log('Calling to event deleted');
-        this.$socket.emit('eventDeleted', itemId);
+        itemId = 'Alta facha mi rey';
+        this.$socket.client.emit('eventDeleted', itemId);
     });
     },
     duplicate(item){
@@ -50,7 +51,7 @@ export default {
           priority: item.priority
       }
       this.addItem(payload).then(()=>{
-        this.$socket.emit('eventDuplicated', payload.codproduct);
+        this.$socket.client.emit('eventDuplicated', payload.codproduct);
       });
     }
   }
